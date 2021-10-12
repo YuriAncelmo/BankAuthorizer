@@ -8,20 +8,20 @@ namespace TestChallengeCodeAuthorizer
         [Fact]
         public void Create()
         {
-            string input = @"{""account"": {""active - card"": false, ""available - limit"": 750}}";
-            input.Replace(" ", "");
-            input.Replace("-","");
-            ChallengeCodeAuthorizer.Account account = JsonConvert.DeserializeObject<ChallengeCodeAuthorizer.Account>(input);
+            string input = "{\"account\": {\"active - card\": false, \"available - limit\": 750}}";
             
+            ChallengeCodeAuthorizer.Account rootaccount = JsonConvert.DeserializeObject<dynamic>(input).account.ToObject<ChallengeCodeAuthorizer.Account>();
+            //ChallengeCodeAuthorizer.Account account = rootaccount.account;
+
             ChallengeCodeAuthorizer.ResponseAccount response = new ChallengeCodeAuthorizer.ResponseAccount();
             response.account = new ChallengeCodeAuthorizer.Account();
             response.account.activecard = false;
             response.account.availablelimit = 750;
             response.violations = new object[0];
 
-            //Assert.Equal(response, account.getResponseAccount());
+            Assert.True(response.Equals(rootaccount.getResponseAccount()));
 
-            
+
         }
         public void DecideOperationExecute()
         {
