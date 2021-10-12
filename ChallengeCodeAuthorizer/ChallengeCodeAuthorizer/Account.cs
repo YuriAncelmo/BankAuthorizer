@@ -9,7 +9,6 @@ namespace ChallengeCodeAuthorizer
 {
     public class Account
     {
-
         public bool activecard { get; set; }
         public int availablelimit { get; set; }
         public ResponseAccount getResponseAccount()

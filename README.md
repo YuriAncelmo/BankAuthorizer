@@ -25,10 +25,10 @@ foobar.pluralize('goose')
 foobar.singularize('phenomena')
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+## References
+Special character json field name -> https://stackoverflow.com/questions/38719368/special-characters-in-property-name
+Newtosoft Json -> https://www.newtonsoft.com/
+Map with reserved words -> https://stackoverflow.com/questions/38391324/map-json-to-c-sharp-class-with-attribute-names-having-space-and-reserve-words
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
