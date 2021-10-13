@@ -11,9 +11,8 @@ namespace ChallengeCodeAuthorizer
     {
         public bool activecard { get; set; }
         public int availablelimit { get; set; }
-        public ResponseAccount getResponseAccount()
-        {
-            return new ResponseAccount(this);
-        }
+        [JsonIgnore]
+        public State state { get; set; }
+        
     }
 }

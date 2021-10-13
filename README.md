@@ -31,6 +31,7 @@ Newtosoft Json -> https://www.newtonsoft.com/
 Map with reserved words -> https://stackoverflow.com/questions/38391324/map-json-to-c-sharp-class-with-attribute-names-having-space-and-reserve-words
 String enums -> https://stackoverflow.com/questions/630803/associating-enums-with-strings-in-c-sharp
 State Pattern -> https://codewithshadman.com/state-pattern-csharp/
+State Pattern -> https://www.dofactory.com/net/state-design-pattern
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
