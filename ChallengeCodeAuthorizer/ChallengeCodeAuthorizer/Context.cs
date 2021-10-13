@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using ChallengeCodeAuthorizer.Model;
 
 namespace ChallengeCodeAuthorizer
 {
@@ -26,9 +23,6 @@ namespace ChallengeCodeAuthorizer
 
         public Account Account { get => account; set => account = value; }
 
-        public void Request()
-        {
-            state.Handle(this);
-        }
+     
     }
 }

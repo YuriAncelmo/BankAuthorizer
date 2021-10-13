@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ChallengeCodeAuthorizer.Model;
 namespace ChallengeCodeAuthorizer
 {
     public class Helper
@@ -14,8 +14,8 @@ namespace ChallengeCodeAuthorizer
             if (json != null)
                 try
                 {
-                    JsonConvert.DeserializeObject<dynamic>(json).account.ToObject<ChallengeCodeAuthorizer.Account>();
-                    return typeof(ChallengeCodeAuthorizer.Account);
+                    JsonConvert.DeserializeObject<dynamic>(json).account.ToObject<Account>();
+                    return typeof(Account);
                 }
                 catch (Exception ex)
                 {
@@ -23,6 +23,11 @@ namespace ChallengeCodeAuthorizer
                 }
             else
                 return null;
+        }
+        public static void replaceJson(ref string json)
+        {
+            json = json.Replace("-", "");
+            json = json.Replace(" ", "");
         }
     }
 }
