@@ -6,10 +6,8 @@ This README explains critical and essencial topics of this solution
 	- Newtonsoft 
 ## Pattern decision 
 
-- State Pattern 
-	There is many kinds of states that an account can be, this pattern can help us to make decisions according to state of an account, example, one suspended account cant me deposit, one valid account can do 
-- Rule Pattern 
-	This pattern allow us to desentralize our rules from our logic and model code. This can be useful for maintenance of a system, cause the organizations of rules allow we go direct on the point
+- **State Pattern**	There is many kinds of states that an account can be, this pattern can help us to make decisions according to state of an account, example, one suspended account cant me deposit, one valid account can do 
+- **Rule Pattern** 	This pattern allow us to desentralize our rules from our logic and model code. This can be useful for maintenance of a system, cause the organizations of rules allow we go direct on the point
 
 ## Build
 
