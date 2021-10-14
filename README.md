@@ -18,6 +18,7 @@ a central build?
 
 # returns 'words'
 foobar.pluralize('word')
+```
 
 ## References
 - Special character json field name 
