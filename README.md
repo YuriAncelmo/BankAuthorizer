@@ -47,22 +47,19 @@ Compare minutes -> https://www.tutorialspoint.com/calculate-minutes-between-two-
 {"transaction": {"merchant": "McDonald's", "amount": 30, "time": "2019-02-13T12:00:00.000Z"}}
 
 # Processando uma transação com sucesso
- Input
- {"account": {"active-card": true, "available-limit": 100}}
- {"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
+	{"account": {"active-card": true, "available-limit": 100}}
+	{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
  Output
  {"account": {"active-card": true, "available-limit": 100},"violations": []}
  {"account": {"active-card": true, "available-limit": 80},"violations": []}
 
-Processando uma transação que viola a lógica account-not-initialized
-Quando uma operação de transação é processada sem que haja uma conta criada, o Autorizador deve
-rejeitar a operação e retornar a violação account-not-initialized :
- Input
- {"account": {"active-card": true, "available-limit": 100}}
- {"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
+# Processando uma transação que viola a lógica account-not-initialized
+	{"account": {"active-card": true, "available-limit": 100}}
+	{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
  Output
- {"account": {"active-card": true, "available-limit": 100},"violations": []}
- {"account": {"active-card": true, "available-limit": 80},"violations": []}
+	{"account": {"active-card": true, "available-limit": 100},"violations": []}
+	{"account": {"active-card": true, "available-limit": 80},"violations": []}
+ 
  Input
  {"transaction": {"merchant": "Uber Eats", "amount": 25, "time": "2020-12-01T11:07:00.000Z"}}
  {"account": {"active-card": true, "available-limit": 225}}
@@ -73,19 +70,13 @@ rejeitar a operação e retornar a violação account-not-initialized :
  {"account": {"active-card": true, "available-limit": 200}, "violations": []}
 
 # Processando uma transação que viola a lógica card-not-active
-	Dado uma conta com o cartão inativo ( active-card: false ) quando qualquer operação de transação é
-	submetida, o Autorizador deve rejeitar a operação e retornar a violação card-not-active :
-
-
-
- Input
- {"account": {"active-card": false, "available-limit": 100}}
- {"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
- {"transaction": {"merchant": "Habbib's", "amount": 15, "time": "2019-02-13T11:15:00.000Z"}}
- Output
- {"account": {"active-card": false, "available-limit": 100}, "violations": []}
- {"account": {"active-card": false, "available-limit": 100}, "violations": ["cardnot-active"]}
- {"account": {"active-card": false, "available-limit": 100}, "violations": ["cardnot-active"]}
+	{"account": {"active-card": false, "available-limit": 100}}
+	{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
+	{"transaction": {"merchant": "Habbib's", "amount": 15, "time": "2019-02-13T11:15:00.000Z"}}
+Output
+	 {"account": {"active-card": false, "available-limit": 100}, "violations": []}
+	 {"account": {"active-card": false, "available-limit": 100}, "violations": ["cardnot-active"]}
+	 {"account": {"active-card": false, "available-limit": 100}, "violations": ["cardnot-active"]}
 # Processando uma transação que viola a lógica insufficient-limit :
 	Dado uma conta com cartão ativo ( active-card: true ) e limite disponível de 1000 ( available-limit:
 	1000 ), para qualquer operação de transação com o atributo amount acima do valor limite de 1000 o
