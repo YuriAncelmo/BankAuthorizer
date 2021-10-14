@@ -14,7 +14,7 @@ namespace TestChallengeCodeAuthorizer
         {
             string inputAccount = @"{""account"": {""active - card"": true, ""available - limit"": 100}}";
 
-            Assert.True(ChallengeCodeAuthorizer.Helper.returnTypeOfJson(inputAccount) == typeof(ChallengeCodeAuthorizer.Account));
+            Assert.True(ChallengeCodeAuthorizer.Helper.returnTypeOfJson(inputAccount) == typeof(ChallengeCodeAuthorizer.Models.Account));
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace TestChallengeCodeAuthorizer
         {
             string inputTransaction = @"{""transaction"": {""merchant"": ""Burger King"", ""amount"": 20, ""time"": ""2019 - 02 - 13T10: 00:00.000Z""}}";
 
-            Assert.True(ChallengeCodeAuthorizer.Helper.returnTypeOfJson(inputTransaction) == typeof(ChallengeCodeAuthorizer.Transaction));
+            Assert.True(ChallengeCodeAuthorizer.Helper.returnTypeOfJson(inputTransaction) == typeof(ChallengeCodeAuthorizer.Models.Transaction));
         }
 
     }

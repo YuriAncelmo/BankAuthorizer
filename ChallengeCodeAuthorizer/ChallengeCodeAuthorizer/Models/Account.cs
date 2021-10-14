@@ -1,20 +1,19 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChallengeCodeAuthorizer.Model
+namespace ChallengeCodeAuthorizer.Models
 {
     public class Account
     {
         public bool activecard { get; set; }
         public int availablelimit { get; set; }
+        [JsonIgnore]
+        public List<Transaction> transactions {  get; set; }
+
         public Account()
         {
             //Novas contas não estão criadas por padrão
-            this.State = new AccountNotCreated(this);//Bind the two instances 
+            State = new AccountNotCreated(this);//Bind the two instances 
+            transactions = new List<Transaction>();
         }
 
         [JsonIgnore]

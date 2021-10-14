@@ -1,5 +1,4 @@
-﻿
-using ChallengeCodeAuthorizer.Model;
+﻿using ChallengeCodeAuthorizer.Models;
 
 namespace ChallengeCodeAuthorizer
 {

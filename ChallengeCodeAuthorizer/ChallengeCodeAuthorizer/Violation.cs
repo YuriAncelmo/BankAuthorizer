@@ -13,10 +13,9 @@ namespace ChallengeCodeAuthorizer
 
         public string Value { get; private set; }
 
-        public static Violation InsufficientLimit { get { return new Violation("insufficient-limit"); } }
         public static Violation AccountAlreadyInitialized { get { return new Violation("account-already-initialized"); } }
-        public static Violation Info { get { return new Violation("Info"); } }
-        public static Violation Warning { get { return new Violation("Warning"); } }
-        public static Violation Error { get { return new Violation("Error"); } }
+        public static Violation AccountNotInitialized { get { return new Violation("account-not-initialized"); } }
+        public static Violation CardNotActive { get { return new Violation("card-not-active"); } }
+        public static Violation InsufficientLimit { get { return new Violation("insufficient-limit"); } }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ChallengeCodeAuthorizer.Model;
+﻿using ChallengeCodeAuthorizer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace ChallengeCodeAuthorizer
 {
     internal class Validation
     {
-
+        
         public ResponseAccount Account(ResponseAccount response)
         {
             //response.violations = AccountViolations();

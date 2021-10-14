@@ -35,9 +35,13 @@ Map with reserved words -> https://stackoverflow.com/questions/38391324/map-json
 String enums -> https://stackoverflow.com/questions/630803/associating-enums-with-strings-in-c-sharp
 State Pattern -> https://codewithshadman.com/state-pattern-csharp/
 State Pattern -> https://www.dofactory.com/net/state-design-pattern
-
+Rule Pattern -> https://stackoverflow.com/questions/16849656/design-pattern-to-implement-business-rules-with-hundreds-of-if-else-in-java
+Rule Pattern -> https://www.michael-whelan.net/rules-design-pattern/
+Last elements of List -> https://stackoverflow.com/questions/3453274/using-linq-to-get-the-last-n-elements-of-a-collection
 ## Jsons
 {"account": {"active-card": true, "available-limit": 100}}
 {"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T10:00:00.000Z"}}
 {"transaction": {"merchant": "Habbib's", "amount": 90, "time": "2019-02-13T11:00:00.000Z"}}
 {"transaction": {"merchant": "McDonald's", "amount": 30, "time": "2019-02-13T12:00:00.000Z"}}
+
+## 
