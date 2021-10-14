@@ -17,5 +17,7 @@ namespace ChallengeCodeAuthorizer
         public static Violation AccountNotInitialized { get { return new Violation("account-not-initialized"); } }
         public static Violation CardNotActive { get { return new Violation("card-not-active"); } }
         public static Violation InsufficientLimit { get { return new Violation("insufficient-limit"); } }
+        public static Violation HighFrequencySmallInterval { get { return new Violation("highfrequency-small-interval"); } }
+        public static Violation DoubleTransaction { get { return new Violation("double-transaction"); } }
     }
 }

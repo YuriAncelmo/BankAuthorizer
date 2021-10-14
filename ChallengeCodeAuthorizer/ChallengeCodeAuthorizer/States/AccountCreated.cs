@@ -11,11 +11,24 @@ namespace ChallengeCodeAuthorizer.States
         {
             Account = account;
         }
-        public override ResponseAccount getResponseAccount()
+
+        public override bool accountCreated()
         {
+            return true;
+        }
+
+        public override ResponseAccount getResponseAccount(List<Violation> violations)
+        {
+            //TODO I can be better
+            string[] values = new string[violations.Count];
+            for (int i = 0; i < violations.Count; i++)
+            {
+                values[i] = violations[i].Value;
+            }
+
             ResponseAccount responseAccount = new ResponseAccount();
             responseAccount.account = Account;
-            responseAccount.violations = new object[] { Violation.AccountAlreadyInitialized.Value };
+            responseAccount.violations = values;
             return responseAccount;
         }
 

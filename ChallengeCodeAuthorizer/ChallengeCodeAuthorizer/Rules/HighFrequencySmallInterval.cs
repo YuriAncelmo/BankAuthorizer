@@ -1,5 +1,6 @@
 ﻿
-using ChallengeCodeAuthorizer.Models;
+
+using ChallengeCodeAuthorizer.States;
 
 namespace ChallengeCodeAuthorizer.Rules
 {
@@ -7,14 +8,18 @@ namespace ChallengeCodeAuthorizer.Rules
     {
         public bool IsApplicable(State state)
         {
-            List<Transaction> a = state.Account.transactions.Skip(Math.Max(0, state.Account.transactions.Count() - 3)).ToList(); // Consider chronologic enter 
-            return true;
+
+            int highFrequencyTransactions = state.Account.transactions.Count(transaction =>
+                    (state.currentTransaction.time - transaction.time).Minutes < 2);//Transactions where range is less (or equal?) than 2
+                    
+            //TODO: need confirm if the 2 is inclusive or exclusive
+            return highFrequencyTransactions > 2 && state.accountCreated(); //Count if is more than 3             
         }
         public Violation Execute()
         {
-            throw new NotImplementedException();
+            return Violation.HighFrequencySmallInterval;
         }
 
-        
+
     }
 }

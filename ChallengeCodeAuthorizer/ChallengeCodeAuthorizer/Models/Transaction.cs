@@ -15,18 +15,7 @@ namespace ChallengeCodeAuthorizer.Models
         {
             executed = false;
         }
-        public ResponseAccount Process(Account account)
-        {
-            ResponseAccount response = new ResponseAccount(account);
-            
-            //Available Limit
-            if (account.availablelimit > amount)
-                account.availablelimit -= amount;
-            else
-                response = Validation.TransactionViolations(account, Violation.InsufficientLimit);
-            
-            return response;
-        }
+        
     }
 
 }

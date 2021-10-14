@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ChallengeCodeAuthorizer.States;
+using Newtonsoft.Json;
 
 namespace ChallengeCodeAuthorizer.Models
 {
