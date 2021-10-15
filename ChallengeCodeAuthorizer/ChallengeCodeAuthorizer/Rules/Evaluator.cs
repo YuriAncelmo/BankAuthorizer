@@ -1,5 +1,6 @@
 ﻿
 using ChallengeCodeAuthorizer.States;
+using ChallengeCodeAuthorizer.Validation;
 
 namespace ChallengeCodeAuthorizer.Rules
 {

@@ -14,7 +14,7 @@ namespace TestChallengeCodeAuthorizer
             ChallengeCodeAuthorizer.Models.Account rootaccount = JsonConvert.DeserializeObject<dynamic>(input).account.ToObject<ChallengeCodeAuthorizer.Models.Account>();
             //ChallengeCodeAuthorizer.Account account = rootaccount.account;
 
-            ChallengeCodeAuthorizer.ResponseAccount response = new ChallengeCodeAuthorizer.ResponseAccount();
+            ChallengeCodeAuthorizer.Response.ResponseAccount response = new ChallengeCodeAuthorizer.Response.ResponseAccount();
             response.account = new ChallengeCodeAuthorizer.Models.Account();
             response.account.activecard = false;
             response.account.availablelimit = 750;

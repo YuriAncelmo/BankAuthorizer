@@ -1,6 +1,6 @@
 ﻿using ChallengeCodeAuthorizer.Models;
 
-namespace ChallengeCodeAuthorizer
+namespace ChallengeCodeAuthorizer.Response
 {
     public class ResponseAccount
     {

@@ -1,8 +1,9 @@
 ﻿
 
 using ChallengeCodeAuthorizer.States;
+using ChallengeCodeAuthorizer.Validation;
 
-namespace ChallengeCodeAuthorizer.Rules
+namespace ChallengeCodeAuthorizer.Rules.Transaction
 {
     internal class CardNotActive : IRule
     {

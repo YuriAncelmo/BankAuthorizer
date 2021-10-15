@@ -1,4 +1,6 @@
 ﻿using ChallengeCodeAuthorizer.Models;
+using ChallengeCodeAuthorizer.Response;
+using ChallengeCodeAuthorizer.Validation;
 
 namespace ChallengeCodeAuthorizer.States
 {
