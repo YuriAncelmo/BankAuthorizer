@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using Xunit;
-using ChallengeCodeAuthorizer;
 
 namespace TestChallengeCodeAuthorizer
 {
@@ -9,11 +8,10 @@ namespace TestChallengeCodeAuthorizer
         [Fact]
         public void Create()
         {
-            string input = "{\"account\": {\"active - card\": false, \"available - limit\": 750}}";
+            string? input = "{\"account\": {\"active - card\": false, \"available - limit\": 750}}";
             input = input.Replace(" ", "").Replace("-", "");
-            ChallengeCodeAuthorizer.Models.Account rootaccount = JsonConvert.DeserializeObject<dynamic>(input).account.ToObject<ChallengeCodeAuthorizer.Models.Account>();
-            //ChallengeCodeAuthorizer.Account account = rootaccount.account;
-
+            dynamic? rootaccountdynamic = JsonConvert.DeserializeObject<dynamic>(input);
+            ChallengeCodeAuthorizer.Models.Account rootaccount = rootaccountdynamic.account.ToObject<ChallengeCodeAuthorizer.Models.Account>();
             ChallengeCodeAuthorizer.Response.ResponseAccount response = new ChallengeCodeAuthorizer.Response.ResponseAccount();
             response.account = new ChallengeCodeAuthorizer.Models.Account();
             response.account.activecard = false;
@@ -22,10 +20,6 @@ namespace TestChallengeCodeAuthorizer
 
             //Assert.True(response.Equals(rootaccount.getResponseAccount()));
 
-
-        }
-        public void DecideOperationExecute()
-        {
 
         }
     }
