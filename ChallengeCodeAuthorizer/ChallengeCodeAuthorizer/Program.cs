@@ -1,10 +1,12 @@
-﻿using ChallengeCodeAuthorizer;
+﻿#region References
+using ChallengeCodeAuthorizer;
 using Newtonsoft.Json;
 using ChallengeCodeAuthorizer.Models;
 using ChallengeCodeAuthorizer.Rules;
 using ChallengeCodeAuthorizer.Rules.Transaction;
 using ChallengeCodeAuthorizer.Rules.Account;
 using ChallengeCodeAuthorizer.Validation;
+#endregion
 
 #region Variables
 string input = String.Empty;
@@ -27,6 +29,7 @@ IRule[] accountRules = new IRule[]
 };
 #endregion
 
+#region Execution
 do
 {
     input = Console.ReadLine();
@@ -57,4 +60,5 @@ do
 
 
 } while (input != "");
+#endregion
 

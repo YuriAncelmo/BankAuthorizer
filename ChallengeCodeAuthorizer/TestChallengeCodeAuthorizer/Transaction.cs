@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-
+﻿
 namespace TestChallengeCodeAuthorizer
 {
+    //Need to be constructed
     public class Transaction
     {
         string input = "{{ \"transaction\": { \"merchant\": \"Burger King\", \"amount\": 20, \"time\": \"2019-02-13T10:00:00.000Z\"} } " +

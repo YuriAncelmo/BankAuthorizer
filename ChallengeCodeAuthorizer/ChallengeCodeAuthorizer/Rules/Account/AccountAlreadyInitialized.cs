@@ -1,10 +1,13 @@
-﻿using ChallengeCodeAuthorizer.States;
+﻿#region References
+using ChallengeCodeAuthorizer.States;
 using ChallengeCodeAuthorizer.Validation;
+#endregion
 
 namespace ChallengeCodeAuthorizer.Rules.Account
 {
-    internal class AccountAlreadyInitialized : IRule
+    public class AccountAlreadyInitialized : IRule
     {
+        #region Public methods
         public bool IsApplicable(State state)
         {
             return state.accountCreated();
@@ -13,7 +16,7 @@ namespace ChallengeCodeAuthorizer.Rules.Account
         {
             return Violation.AccountAlreadyInitialized;
         }
+        #endregion
 
-     
     }
 }

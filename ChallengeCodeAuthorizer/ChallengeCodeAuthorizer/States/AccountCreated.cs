@@ -1,11 +1,14 @@
-﻿using ChallengeCodeAuthorizer.Models;
+﻿#region References
+using ChallengeCodeAuthorizer.Models;
 using ChallengeCodeAuthorizer.Response;
 using ChallengeCodeAuthorizer.Validation;
+#endregion
 
 namespace ChallengeCodeAuthorizer.States
 {
     public class AccountCreated : State
     {
+        #region Constructor
         public AccountCreated(State state) : this(state.Account)
         {
         }
@@ -13,12 +16,22 @@ namespace ChallengeCodeAuthorizer.States
         {
             Account = account;
         }
+        #endregion
 
+        #region Public Methods
+        /// <summary>
+        /// Indicate the state of account created
+        /// </summary>
+        /// <returns></returns>
         public override bool accountCreated()
         {
             return true;
         }
-
+        /// <summary>
+        /// Construct the Response according to account,transactions and it's violations
+        /// </summary>
+        /// <param name="violations">list of violations</param>
+        /// <returns>Response account ready to be used</returns>
         public override ResponseAccount getResponseAccount(List<Violation> violations)
         {
             //TODO I can be better
@@ -33,6 +46,6 @@ namespace ChallengeCodeAuthorizer.States
             responseAccount.violations = values;
             return responseAccount;
         }
-
+        #endregion
     }
 }

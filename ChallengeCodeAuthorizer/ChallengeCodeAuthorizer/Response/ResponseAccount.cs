@@ -1,11 +1,17 @@
-﻿using ChallengeCodeAuthorizer.Models;
+﻿#region References
+using ChallengeCodeAuthorizer.Models;
+#endregion
 
 namespace ChallengeCodeAuthorizer.Response
 {
     public class ResponseAccount
     {
+        #region Properties
         public Account account { get; set; }
         public object[] violations  { get; set; }
+        #endregion
+
+        #region Constructor
         public ResponseAccount(Account account)
         {
             this.account = account;
@@ -16,6 +22,14 @@ namespace ChallengeCodeAuthorizer.Response
         {
 
         }
+        #endregion
+
+        #region Public methods
+        /// <summary>
+        /// Return if current object is equals to another , in level of properties
+        /// </summary>
+        /// <param name="obj">obj to be compared</param>
+        /// <returns>True if is equal</returns>
         public bool Equals(ResponseAccount? obj)
         {
             return this.account.availablelimit == obj.account.availablelimit
@@ -23,7 +37,7 @@ namespace ChallengeCodeAuthorizer.Response
                       && this.violations.Count() == obj.violations.Count();
                 
         }
-
+        #endregion
     }
-   
+
 }

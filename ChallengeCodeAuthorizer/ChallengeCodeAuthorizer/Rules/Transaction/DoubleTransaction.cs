@@ -1,12 +1,13 @@
-﻿
-
+﻿#region References
 using ChallengeCodeAuthorizer.States;
 using ChallengeCodeAuthorizer.Validation;
+#endregion
 
 namespace ChallengeCodeAuthorizer.Rules.Transaction
 {
     internal class DoubleTransaction : IRule
     {
+        #region Public Methods
         public bool IsApplicable(State state)
         {
             ///TODO: need confirm if the 2 is inclusive or exclusive
@@ -21,7 +22,7 @@ namespace ChallengeCodeAuthorizer.Rules.Transaction
         {
             return Violation.DoubleTransaction;
         }
-
+        #endregion
 
     }
 }

@@ -8,15 +8,34 @@ This README explains critical and essencial topics of this solution
 
 - **State Pattern**	There is many kinds of states that an account can be, this pattern can help us to make decisions according to state of an account, example, one suspended account cant me deposit, one valid account can do 
 - **Rule Pattern** 	This pattern allow us to desentralize our rules from our logic and model code. This can be useful for maintenance of a system, cause the organizations of rules allow we go direct on the point
+## Build Application on Temporary Container 
 
-## Build
+Certify that you have Docker running, then , in the folder of project ChallengeCodeAuthorizer run the build.cmd file.
+This file will compile the application in the folder bin, create the image and upload to a temporary container.
 
-```I dont know yet
-a central build?
 
-# returns 'words'
-foobar.pluralize('word')
+## Build 
+Open CLI from .Net, and run follow command
+```dotnet publish -c Release
 ```
+After this, you will be able to view the application compiled in folder ..\ChallengeCodeAuthorizer\ChallengeCodeAuthorizer\bin\Release\net6.0
+If you want run in windows, only you need is run ChallengeCodeAuthorizer.exe
+
+## Create Image for Container
+With docker installed run 
+```docker build -t authorizer-image -f Dockerfile .```
+
+## Create a Container 
+With Image created run 
+```docker create --name authorizer authorizer-image```
+
+## Start and stop container 
+When you want to start or stop container, you only need to run 
+```docker start[or stop] authorizer```
+
+## Execute 
+The following command attach to container and allow to test
+```docker attach --sig-proxy=false authorizer```
 
 ## References
 - Special character json field name 
@@ -37,6 +56,8 @@ foobar.pluralize('word')
 	- https://stackoverflow.com/questions/3453274/using-linq-to-get-the-last-n-elements-of-a-collection
 - Compare minutes 
 	- https://www.tutorialspoint.com/calculate-minutes-between-two-dates-in-chash
+- Build Container
+	- https://docs.microsoft.com/pt-br/dotnet/core/docker/build-container?tabs=windows
 
 # Jsons
 

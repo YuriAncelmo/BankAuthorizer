@@ -1,11 +1,15 @@
-﻿using ChallengeCodeAuthorizer.States;
+﻿#region References
+using ChallengeCodeAuthorizer.States;
 using ChallengeCodeAuthorizer.Validation;
+#endregion
 
 namespace ChallengeCodeAuthorizer.Rules
 {
-    internal interface IRule
+    public interface IRule
     {
+        #region Contracts
         bool IsApplicable(State state);
-        Violation Execute(); 
+        Violation Execute();
+        #endregion
     }
 }
