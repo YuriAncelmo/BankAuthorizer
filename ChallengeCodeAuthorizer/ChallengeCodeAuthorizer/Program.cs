@@ -30,9 +30,10 @@ IRule[] accountRules = new IRule[]
 #endregion
 
 #region Execution
-do
+string[] lines = System.IO.File.ReadAllLines(args[0]);
+for(int i=0; i< lines.Length;i++)
 {
-    input = Console.ReadLine();
+    input = lines[i];
     if (Helper.returnTypeOfJson(input) == typeof(Account))
     {
         Helper.replaceJson(ref input);
@@ -59,6 +60,6 @@ do
 
 
 
-} while (input != "");
+} 
 #endregion
 
