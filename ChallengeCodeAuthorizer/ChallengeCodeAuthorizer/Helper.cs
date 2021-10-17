@@ -15,7 +15,6 @@ namespace ChallengeCodeAuthorizer
         /// <returns>identified type</returns>
         public static Type returnTypeOfJson(string? json)
         {
-            if (json != null)
                 try
                 {
                     JsonConvert.DeserializeObject<dynamic>(json).account.ToObject<Account>();

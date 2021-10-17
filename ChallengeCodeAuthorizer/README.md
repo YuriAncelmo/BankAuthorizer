@@ -2,8 +2,8 @@
 
 This README explains critical and essencial topics of this solution
 
-## Packages
-	- Newtonsoft 
+## Framework
+	- .Net Framework 6.0 , with development in Visual Studio 2022 Preview. I decided for because is the most recent framework of .Net and we can help community to improve this release candidate.
 ## Pattern decision 
 
 - **State Pattern**	There is many kinds of states that an account can be, this pattern can help us to make decisions according to state of an account, example, one suspended account cant me deposit, one valid account can do 
