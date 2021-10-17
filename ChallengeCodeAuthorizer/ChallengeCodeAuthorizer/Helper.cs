@@ -15,17 +15,16 @@ namespace ChallengeCodeAuthorizer
         /// <returns>identified type</returns>
         public static Type returnTypeOfJson(string? json)
         {
-                try
-                {
-                    JsonConvert.DeserializeObject<dynamic>(json).account.ToObject<Account>();
-                    return typeof(Account);
-                }
-                catch (Exception ex)
-                {
-                    return typeof(Transaction);
-                }
-            else
-                return null;
+            try
+            {
+                JsonConvert.DeserializeObject<dynamic>(json).account.ToObject<Account>();
+                return typeof(Account);
+            }
+            catch
+            {
+                return typeof(Transaction);
+            }
+
         }
 
 
@@ -36,6 +35,8 @@ namespace ChallengeCodeAuthorizer
         public static void replaceJson(ref string json)
         {
             json = json.Replace("active - card", "activecard");
+            json = json.Replace("active-card", "activecard");
+            json = json.Replace("available-limit", "availablelimit");
             json = json.Replace("available - limit", "availablelimit");
         }
         #endregion
