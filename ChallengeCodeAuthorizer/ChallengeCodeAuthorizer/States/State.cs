@@ -9,14 +9,14 @@ namespace ChallengeCodeAuthorizer.States;
 public abstract class State
 {
     #region Properties
-    public Account account;
-    public Transaction currentTransaction;
-    public Account Account { get => account; set => account = value; }
+    public Account? account;
+    public Transaction? currentTransaction;
+    public Account? Account { get => account; set => account = value; }
     #endregion
 
     #region Constracts
-    public abstract ResponseAccount getResponseAccount(List<Violation> violations);
-    public abstract bool accountCreated();
+    public abstract ResponseAccount GetResponseAccount(List<Violation> violations);
+    public abstract bool AccountIsCreated();
     #endregion
     #region Internal Methods
     /// <summary>
@@ -24,9 +24,15 @@ public abstract class State
     /// </summary>
     internal void ProcessTransaction()
     {
-        account.transactions.Add(account.State.currentTransaction);
-        account.availablelimit -= currentTransaction.amount;
-        currentTransaction = null;
+        if (account != null 
+            && account.State != null 
+            && account.State.currentTransaction != null
+            && currentTransaction != null)
+        {
+            account.Transactions.Add(account.State.currentTransaction);
+            account.AvailableLimit -= currentTransaction.Amount;
+            currentTransaction = null;
+        }
     }
     #endregion
 }

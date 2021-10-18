@@ -8,24 +8,21 @@ namespace ChallengeCodeAuthorizer.Models
     public class Account
     {
         #region Json Properties
-        public bool activecard { get; set; }
-        public int availablelimit { get; set; }
+        public bool ActiveCard { get; set; }
+        public int AvailableLimit { get; set; }
         #endregion
 
         #region No Json Properties
         [JsonIgnore]
-        public List<Transaction> transactions {  get; set; }
+        public List<Transaction> Transactions {  get; set; }
         
-        [JsonIgnore]
-        private State state;
+        //[JsonIgnore]
+        //private State state;
         [JsonIgnore]
         public State State
         {
-            get { return state; }
-            set
-            {
-                state = value;
-            }
+            get;
+            set;
         }
         #endregion
 
@@ -34,7 +31,7 @@ namespace ChallengeCodeAuthorizer.Models
         {
             //Novas contas não estão criadas por padrão
             State = new AccountNotCreated(this);//Bind the two instances 
-            transactions = new List<Transaction>();
+            Transactions = new List<Transaction>();
         }
         #endregion
 

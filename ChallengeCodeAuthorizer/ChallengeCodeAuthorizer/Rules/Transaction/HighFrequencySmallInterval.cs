@@ -10,16 +10,17 @@ namespace ChallengeCodeAuthorizer.Rules.Transaction
         #region Public Methods
         public bool IsApplicable(State state)
         {
+            if (state.Account != null && state.currentTransaction != null)
+            {
+                int highFrequencyTransactions = state.Account.Transactions.Count(transaction =>
+                       (state.currentTransaction.Time - transaction.Time).Minutes < 2);//Transactions where range is less (or equal?) than 2
 
-            //int highFrequencyTransactions = state.Account.transactions.Count(transaction =>
-            //        (state.currentTransaction.time - transaction.time).Minutes < 2//Transactions where range is less (or equal?) than 2
-            //        && state.currentTransaction.merchant != transaction.merchant);//From different merchants
-            int highFrequencyTransactions = state.Account.transactions.Count(transaction =>
-                    (state.currentTransaction.time - transaction.time).Minutes < 2);//Transactions where range is less (or equal?) than 2
-                
-                    
-            //TODO: need confirm if the 2 is inclusive or exclusive
-            return highFrequencyTransactions > 2 && state.accountCreated(); //Count if is more than 3             
+
+                //TODO: need confirm if the 2 is inclusive or exclusive
+                return highFrequencyTransactions > 2 && state.AccountIsCreated(); //Count if is more than 3             
+            }
+            else 
+                return false;
         }
         public Violation Execute()
         {

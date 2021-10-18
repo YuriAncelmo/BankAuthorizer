@@ -20,9 +20,11 @@ string header =
 
 
 #endregion
+
 #region Variables
-string input = String.Empty;
-Account account = new Account();
+string? input = String.Empty;
+Account? account;
+string? directory = String.Empty;
 #endregion
 
 #region Rules
@@ -44,57 +46,80 @@ IRule[] accountRules = new IRule[]
 #region Execution
 Console.WriteLine(header);
 
-
-string pathAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
-string directory = System.IO.Path.GetDirectoryName(pathAssembly);
-Console.WriteLine("Coloque os arquivos que deseja processar no diretório " + directory);
-Console.WriteLine();
-Console.WriteLine("Após isso pressione 'Enter'");
-Console.ReadLine();
+if (args.Length == 0)
+{
+    string? pathAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
+    directory = System.IO.Path.GetDirectoryName(pathAssembly);
+    Console.WriteLine("Como você não colocou nenhum arrquivo como parâmetro, coloque os arquivos que deseja processar no diretório " + directory);
+    Console.WriteLine();
+    Console.WriteLine("Após isso pressione 'Enter'");
+    Console.ReadLine();
+}
 bool continuar = true;
 while (continuar)
 {
-    Console.WriteLine("Lista de arquivos disponíveis");
-
-    DirectoryInfo directoryInfo = new DirectoryInfo(directory);
-    FileInfo[] Files = directoryInfo.GetFiles("*.txt");
-    for (int i = 0; i < Files.Count(); i++)
+    string[] lines;
+    if (args.Length == 0 && directory != null)
     {
-        Console.WriteLine(i + " - " + Files[i].Name);
+        Console.WriteLine("Lista de arquivos disponíveis");
+
+        DirectoryInfo directoryInfo = new(directory);
+        FileInfo[] Files = directoryInfo.GetFiles("*.txt");
+        for (int i = 0; i < Files.Length; i++)
+        {
+            Console.WriteLine(i + " - " + Files[i].Name);
+        }
+        Console.WriteLine("Digite qual arquivo deseja processar: ");
+        string? option = Console.ReadLine();
+        if (option != null)
+            lines = System.IO.File.ReadAllLines(Files[int.Parse(option)].FullName);
+        else
+            lines = Array.Empty<string>();
     }
-    Console.WriteLine("Digite qual arquivo deseja processar: ");
-    int fileNumber = int.Parse(Console.ReadLine());
-    string[] lines = System.IO.File.ReadAllLines(Files[fileNumber].FullName);
+    else
+        lines = System.IO.File.ReadAllLines(args[0]);
+
     account = new Account();
 
     for (int i = 0; i < lines.Length; i++)
     {
         input = lines[i];
-        if (input != "")
-            if (Helper.returnTypeOfJson(input) == typeof(Account))
-            {
-                Helper.replaceJson(ref input);
 
-                var dynamic = JsonConvert.DeserializeObject<dynamic>(input);
-                List<Violation> violations = new Evaluator(accountRules).Execute(account.State);
+        Helper.ReplaceJson(ref input);
 
-                if (violations.Count == 0)
-                    account = dynamic.account.ToObject<Account>();
+        if (input != null)
+        {
+            dynamic? dynamic = JsonConvert.DeserializeObject<dynamic>(input);
+            if (dynamic != null)
+                if (Helper.ReturnTypeOfJson(input) == typeof(Account))
+                {
 
-                Console.WriteLine(JsonConvert.SerializeObject(account.State.getResponseAccount(violations)));
-            }
-            else
-            {
-                Transaction transaction = JsonConvert.DeserializeObject<dynamic>(input).transaction.ToObject<Transaction>();
-                account.State.currentTransaction = transaction;
-                List<Violation> violations = new Evaluator(transactionRules).Execute(account.State);
+                    Account? currentAccount = dynamic.account.ToObject<Account>();
+                    if (currentAccount != null && account != null)
+                    {
+                        List<Violation> violations = new Evaluator(accountRules).Execute(account.State);
 
-                if (violations.Count == 0)
-                    account.State.ProcessTransaction();
+                        if (violations.Count == 0)
+                            account = currentAccount;
+                        
+                        Console.WriteLine(JsonConvert.SerializeObject(account?.State.GetResponseAccount(violations)).ToLower());
+                    }
+                }
+                else
+                {
+                    Transaction? transaction = dynamic.transaction.ToObject<Transaction>();
+                    if (transaction != null && account != null)
+                    {
+                        account.State.currentTransaction = transaction;
+                        List<Violation> violations = new Evaluator(transactionRules).Execute(account.State);
 
-                Console.WriteLine(JsonConvert.SerializeObject(account.State.getResponseAccount(violations)));
-            }
+                        if (violations.Count == 0)
+                            account.State.ProcessTransaction();
 
+                        Console.WriteLine(JsonConvert.SerializeObject(account.State.GetResponseAccount(violations)).ToLower());
+                    }
+                }
+        }
     }
     Console.WriteLine("Digite \"S\" para continuar, e N para sair:");
     continuar = Console.ReadLine() == "S";

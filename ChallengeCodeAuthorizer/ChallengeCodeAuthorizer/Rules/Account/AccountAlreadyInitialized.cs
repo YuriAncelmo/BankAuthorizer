@@ -10,7 +10,7 @@ namespace ChallengeCodeAuthorizer.Rules.Account
         #region Public methods
         public bool IsApplicable(State state)
         {
-            return state.accountCreated();
+            return state.AccountIsCreated();
         }
         public Violation Execute()
         {

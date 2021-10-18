@@ -7,15 +7,15 @@ namespace ChallengeCodeAuthorizer.Response
     public class ResponseAccount
     {
         #region Properties
-        public Account account { get; set; }
-        public object[] violations  { get; set; }
+        public Account? Account { get; set; }
+        public object[]? Violations { get; set; }
         #endregion
 
         #region Constructor
-        public ResponseAccount(Account account)
+        public ResponseAccount(Account? account)
         {
-            this.account = account;
-            violations = new object[0];
+            this.Account = account;
+            Violations = Array.Empty<object>();
         }
         //Tests reason
         public ResponseAccount()
@@ -32,10 +32,14 @@ namespace ChallengeCodeAuthorizer.Response
         /// <returns>True if is equal</returns>
         public bool Equals(ResponseAccount? obj)
         {
-            return this.account.availablelimit == obj.account.availablelimit
-                      && this.account.activecard == obj.account.activecard
-                      && this.violations.Count() == obj.violations.Count();
-                
+            if (this.Account != null && obj?.Account != null)
+                return this.Account.AvailableLimit == obj.Account.AvailableLimit
+                      && this.Account.ActiveCard == obj.Account.ActiveCard
+                      && this.Violations?.Length == obj.Violations?.Length;
+            else if (this.Account == obj?.Account)
+                return true;
+            else return false;
+
         }
         #endregion
     }

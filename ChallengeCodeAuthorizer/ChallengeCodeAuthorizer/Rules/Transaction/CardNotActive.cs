@@ -10,7 +10,7 @@ namespace ChallengeCodeAuthorizer.Rules.Transaction
         #region Public Methods
         public bool IsApplicable(State state)
         {
-            return state.Account != null && !state.Account.activecard && state.accountCreated();//If card is not active, is applicable for rule
+            return state.Account != null && !state.Account.ActiveCard && state.AccountIsCreated();//If card is not active, is applicable for rule
         }
         public Violation Execute()
         {

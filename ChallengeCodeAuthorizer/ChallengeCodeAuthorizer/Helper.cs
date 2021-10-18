@@ -13,12 +13,18 @@ namespace ChallengeCodeAuthorizer
         /// </summary>
         /// <param name="json">The json to decide</param>
         /// <returns>identified type</returns>
-        public static Type returnTypeOfJson(string? json)
+        public static Type ReturnTypeOfJson(string json)
         {
+            
             try
             {
-                JsonConvert.DeserializeObject<dynamic>(json).account.ToObject<Account>();
-                return typeof(Account);
+                var dynamic = JsonConvert.DeserializeObject<dynamic>(json);
+                if (dynamic != null)
+                {
+                    dynamic.account.ToObject<Account>();
+                    return typeof(Account);
+                }
+                else throw new Exception();
             }
             catch
             {
@@ -32,7 +38,7 @@ namespace ChallengeCodeAuthorizer
         /// This method remove all - and ' ' of the fields active - card and available - limit
         /// </summary>
         /// <param name="json">json formated</param>
-        public static void replaceJson(ref string json)
+        public static void ReplaceJson(ref string json)
         {
             json = json.Replace("active - card", "activecard");
             json = json.Replace("active-card", "activecard");

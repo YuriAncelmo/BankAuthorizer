@@ -5,6 +5,7 @@ using ChallengeCodeAuthorizer;
 using ChallengeCodeAuthorizer.Validation;
 using ChallengeCodeAuthorizer.Rules.Account ;
 using ChallengeCodeAuthorizer.Rules;
+using System;
 
 namespace TestChallengeCodeAuthorizer
 {
@@ -16,28 +17,35 @@ namespace TestChallengeCodeAuthorizer
             string? input = "{\"account\": {\"active - card\": false, \"available - limit\": 750}}";
             
 
-            ChallengeCodeAuthorizer.Models.Account account = new ChallengeCodeAuthorizer.Models.Account();
+            ChallengeCodeAuthorizer.Models.Account? account = new ();
             IRule[] accountRules = new IRule[]
             {
                 new AccountAlreadyInitialized()
             };
 
-            Helper.replaceJson(ref input);
+            Helper.ReplaceJson(ref input);
 
             var dynamic = JsonConvert.DeserializeObject<dynamic>(input);
-            List<Violation> violations = new Evaluator(accountRules).Execute(account.State);
+            if (dynamic != null)
+            {
+                ChallengeCodeAuthorizer.Models.Account? currentAccount = dynamic.account.ToObject<ChallengeCodeAuthorizer.Models.Account>();
+                List<Violation> violations = new Evaluator(accountRules).Execute(account.State);
 
-            if (violations.Count == 0)
-                account = dynamic.account.ToObject<ChallengeCodeAuthorizer.Models.Account>();
+                if (violations.Count == 0 && currentAccount != null)
+                    account = currentAccount;
 
-            ChallengeCodeAuthorizer.Response.ResponseAccount response = new ChallengeCodeAuthorizer.Response.ResponseAccount();
-            response.account = new ChallengeCodeAuthorizer.Models.Account();
-            response.account.activecard = false; 
-            response.account.availablelimit = 750;
-            response.violations = new object[0];
+                ChallengeCodeAuthorizer.Response.ResponseAccount response = new();
+                response.Account = new();
+                response.Account.ActiveCard = false;
+                response.Account.AvailableLimit = 750;
+                response.Violations = Array.Empty<object>();
 
-            Assert.True(response.Equals(account.State.getResponseAccount(violations)));
-
+                Assert.True(response.Equals(account.State.GetResponseAccount(violations)));
+            }
+            else
+            {
+                Assert.True(false);
+            }
 
         }
         [Fact]
@@ -46,34 +54,38 @@ namespace TestChallengeCodeAuthorizer
             string? input = "{\"account\": {\"active - card\": false, \"available - limit\": 750}}";
 
 
-            ChallengeCodeAuthorizer.Models.Account account = new ChallengeCodeAuthorizer.Models.Account();
+            ChallengeCodeAuthorizer.Models.Account account = new ();
             IRule[] accountRules = new IRule[]
             {
                 new AccountAlreadyInitialized()
             };
 
-            Helper.replaceJson(ref input);
-
+            Helper.ReplaceJson(ref input);
             var dynamic = JsonConvert.DeserializeObject<dynamic>(input);
-            List<Violation> violations = new Evaluator(accountRules).Execute(account.State);
+            if (dynamic != null)
+            {
+                ChallengeCodeAuthorizer.Models.Account? currentAccount = dynamic.account.ToObject<ChallengeCodeAuthorizer.Models.Account>();
+                List<Violation> violations = new Evaluator(accountRules).Execute(account.State);
 
-            if (violations.Count == 0)
-            { 
-                account = dynamic.account.ToObject<ChallengeCodeAuthorizer.Models.Account>();
-                account.State.getResponseAccount(violations);//Change the state to created 
+                if (violations.Count == 0 && currentAccount != null)
+                {
+                    account = currentAccount;
+                    account.State.GetResponseAccount(violations);//Change the state to created 
+                }
+
+                violations = new Evaluator(accountRules).Execute(account.State);
+
+
+                ChallengeCodeAuthorizer.Response.ResponseAccount response = new();
+                response.Account = new();
+                response.Account.ActiveCard = false;
+                response.Account.AvailableLimit = 750;
+                response.Violations = new object[1] { new AccountAlreadyInitialized() };
+
+                Assert.True(response.Equals(account.State.GetResponseAccount(violations)));
             }
-
-            violations = new Evaluator(accountRules).Execute(account.State);
-
-
-            ChallengeCodeAuthorizer.Response.ResponseAccount response = new ChallengeCodeAuthorizer.Response.ResponseAccount();
-            response.account = new ChallengeCodeAuthorizer.Models.Account();
-            response.account.activecard = false;
-            response.account.availablelimit = 750;
-            response.violations = new object[1] {new AccountAlreadyInitialized()};
-
-            Assert.True(response.Equals(account.State.getResponseAccount(violations)));
-
+            else
+                Assert.True(false);
 
         }
 

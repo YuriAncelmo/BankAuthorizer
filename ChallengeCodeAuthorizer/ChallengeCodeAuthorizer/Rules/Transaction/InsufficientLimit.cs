@@ -10,7 +10,10 @@ namespace ChallengeCodeAuthorizer.Rules.Transaction
         #region Public Methods
         public bool IsApplicable(State state)
         {
-            return state.currentTransaction.amount >= state.Account.availablelimit  && state.accountCreated();
+            if (state.currentTransaction != null && state.Account != null)
+                return state.currentTransaction.Amount >= state.Account.AvailableLimit
+                    && state.AccountIsCreated();
+            else return false;
         }
         public Violation Execute()
         {
