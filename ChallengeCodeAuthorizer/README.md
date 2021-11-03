@@ -1,4 +1,4 @@
-# Nubank Authorizer
+# Bank Transaction Authorizer
 
 This README explains critical and essencial topics of this solution
 
@@ -61,7 +61,7 @@ The following command attach to container and allow to test
 
 # Jsons
 
-## Processando uma transação com sucesso
+## Processando uma transaÃ§Ã£o com sucesso
 	{"account": {"active-card": true, "available-limit": 100}}
 	{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
 
@@ -69,7 +69,7 @@ Output:
 		{"account": {"active-card": true, "available-limit": 100},"violations": []}
 		{"account": {"active-card": true, "available-limit": 80},"violations": []}
 
-## Processando uma transação que viola a lógica account-not-initialized - 1
+## Processando uma transaÃ§Ã£o que viola a lÃ³gica account-not-initialized - 1
 	{"account": {"active-card": true, "available-limit": 100}}
 	{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
 
@@ -77,7 +77,7 @@ Output:
 		{"account": {"active-card": true, "available-limit": 100},"violations": []}
 		{"account": {"active-card": true, "available-limit": 80},"violations": []}
  
-## Processando uma transação que viola a lógica account-not-initialized - 2
+## Processando uma transaÃ§Ã£o que viola a lÃ³gica account-not-initialized - 2
 	{"transaction": {"merchant": "Uber Eats", "amount": 25, "time": "2020-12-01T11:07:00.000Z"}}
 	{"account": {"active-card": true, "available-limit": 225}}
 	{"transaction": {"merchant": "Uber Eats", "amount": 25, "time": "2020-12-01T11:07:00.000Z"}}
@@ -87,7 +87,7 @@ Output:
 		{"account": {"active-card": true, "available-limit": 225}, "violations": []}
 		{"account": {"active-card": true, "available-limit": 200}, "violations": []}
 
-## Processando uma transação que viola a lógica card-not-active
+## Processando uma transaÃ§Ã£o que viola a lÃ³gica card-not-active
 	{"account": {"active-card": false, "available-limit": 100}}
 	{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
 	{"transaction": {"merchant": "Habbib's", "amount": 15, "time": "2019-02-13T11:15:00.000Z"}}
@@ -96,7 +96,7 @@ Output:
 		{"account": {"active-card": false, "available-limit": 100}, "violations": []}
 		{"account": {"active-card": false, "available-limit": 100}, "violations": ["cardnot-active"]}
 		{"account": {"active-card": false, "available-limit": 100}, "violations": ["cardnot-active"]}
-## Processando uma transação que viola a lógica insufficient-limit
+## Processando uma transaÃ§Ã£o que viola a lÃ³gica insufficient-limit
 	{"account": {"active-card": true, "available-limit": 1000}}
 	{"transaction": {"merchant": "Vivara", "amount": 1250, "time": "2019-02-13T11:00:00.000Z"}}
 	{"transaction": {"merchant": "Samsung", "amount": 2500, "time": "2019-02-13T11:00:01.000Z"}}
@@ -108,7 +108,7 @@ Output:
 		{"account": {"active-card": true,"available-limit": 1000}, "violations":["insufficient-limit"]}
 		{"account": {"active-card": true,"available-limit": 200}, "violations": []}
 
-## Processando uma transação que viola a lógica high-frequency-small-interval
+## Processando uma transaÃ§Ã£o que viola a lÃ³gica high-frequency-small-interval
 	{"account": {"active-card": true, "available-limit": 100}}
 	{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
 	{"transaction": {"merchant": "Habbib's", "amount": 20, "time": "2019-02-13T11:00:01.000Z"}}
@@ -124,7 +124,7 @@ Output:
 		{"account": {"active-card": true, "available-limit": 40}, "violations": ["highfrequency-small-interval"]}
 		{"account": {"active-card": true, "available-limit": 30}, "violations": []}
 
-## Processando uma transação que viola a lógica doubled-transaction
+## Processando uma transaÃ§Ã£o que viola a lÃ³gica doubled-transaction
 	{"account": {"active-card": true, "available-limit": 100}}
 	{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:00.000Z"}}
 	{"transaction": {"merchant": "McDonald's", "amount": 10, "time": "2019-02-13T11:00:01.000Z"}}
@@ -138,7 +138,7 @@ Output:
 		{"account": {"active-card": true, "available-limit": 70}, "violations": ["doubledtransaction"]}
 		{"account": {"active-card": true, "available-limit": 55}, "violations": []}
 
-## Processando transações que violam multiplas lógicas
+## Processando transaÃ§Ãµes que violam multiplas lÃ³gicas
 	{"account": {"active-card": true, "available-limit": 100}}    
 	{"transaction": {"merchant": "McDonald's", "amount": 10, "time": "2019-02-13T11:00:01.000Z"}}    
 	{"transaction": {"merchant": "Burger King", "amount": 20, "time": "2019-02-13T11:00:02.000Z"}}    
@@ -157,7 +157,7 @@ Output:
 	{"account":{"active-card":true,"available-limit":65},"violations":["insufficient-limit","high-frequency-small-interval"]}    
 	{"account":{"active-card":true,"available-limit":50},"violations":[]}
 
-## Estado da Aplicação 
+## Estado da AplicaÃ§Ã£o 
 	{"account": {"active-card": true, "available-limit": 1000}}    
 	{"transaction": {"merchant": "Vivara", "amount": 1250, "time": "2019-02-13T11:00:00.000Z"}}    
 	{"transaction": {"merchant": "Samsung", "amount": 2500, "time": "2019-02-13T11:00:01.000Z"}}    
