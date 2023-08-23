@@ -16,7 +16,8 @@ This file will compile the application in the folder bin, create the image and u
 
 ## Build 
 Open CLI from .Net, and run follow command
-```dotnet publish -c Release
+```
+dotnet publish -c Release
 ```
 After this, you will be able to view the application compiled in folder ..\ChallengeCodeAuthorizer\ChallengeCodeAuthorizer\bin\Release\net6.0
 If you want run in windows, only you need is run ChallengeCodeAuthorizer.exe
